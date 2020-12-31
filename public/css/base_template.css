@@ -1,0 +1,215 @@
+html,
+body{
+    background-color: #333;
+    color: #fff;
+    overflow:auto;
+}
+/* 
+body::-webkit-scrollbar {
+    display: none;
+}
+ */
+.content-cust{
+    margin-bottom: 0;
+    margin-top: 3.5rem;
+}
+
+.bg-none{
+    z-index: -2;
+    background-image: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.bg-cover{
+    z-index: -2;
+    /*background-image: url(https://cdnp.iconscout.com/photo/free/preview/empty-wooden-board-top-table-in-front-of-counter-coffee-shop-blurred-background-perspective-wood-in-blurred-coffee-cafe-background-for-photo-montage-product-display-or-mock-up-your-product-1463118-1239425.jpg);*/
+    background-image: url(includes/homebackground.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.bg-default{
+    z-index: -2;
+    background-image: url(includes/background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.bg-reg{
+    z-index: -2;
+    background-image: url('https://wallpaperaccess.com/full/2532192.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.cover-container{
+    max-width: 55em;
+}
+            
+.main_container{
+    margin-top: 3.5rem;
+    min-height: calc(100% - 5.5rem);
+    overflow:auto;
+}
+
+main{
+    margin-bottom: auto;
+}
+
+.cust-btn{
+    font-weight: 700;
+}
+
+.btn-secondary, .btn-secondary:hover, .btn-secondary:focus{
+    border-width: .15em;
+    color: #333;
+    background-color: #f9f9f9;
+    border-color: #f9f9f9;
+}
+
+.btn-light, .btn-light:hover, .btn-light:focus{
+    border-width: .15em;
+    color: #fff;
+    background-color: #333;
+    border-color: #333;
+}
+
+.alert{
+    margin-top: 3.5rem;
+}
+
+.jumbotron{
+    background-color: rgb(3,3,3,.7);
+    color: #fff;
+    border-radius: 0;
+}
+
+.table{
+    color: #fff;
+    width: 75%;
+}
+
+thead{
+    background-color: rgb(3,3,3,.7);
+}
+
+.titem{
+    background-color: rgb(3,3,3,.5);
+}
+    
+            
+.navPage{
+    margin-top: 0;
+    margin-left: 10rem;
+    margin-bottom: 2rem;
+    padding: 2.5rem 5rem;
+}
+
+.cust-nav{
+    position: fixed;
+    z-index: 0;
+    Width: 10rem;
+    top: 0;
+    bottom: -10rem;
+    margin: 0;
+    padding: 0;
+    padding-top: 5.5rem;
+    padding-bottom: 12rem;
+    background-color: #353535;
+    color: #fff;
+    font-size: 1em;
+    overflow-y: auto;
+  
+    /*box-shadow: 0 0 5rem rgba(0, 0, 0, 5);*/
+}
+
+.cust-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.navList{
+    width: 100%;
+    color: white;
+    font-weight: 700;
+}
+
+.navItem{
+    margin: .5rem 0;
+    height: 5rem;
+    line-height: 5rem;
+    left: 0;
+}
+
+.navBtn{
+    color: #fff;
+    background-color: #f4511e;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: auto;
+    font-weight: 700;
+}
+
+.navBtn:hover, .navBtn:focus{
+    color: #f4511e;
+    background-color: #f5f5f5;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.navAddBtn{
+    background-color: #f42c1e;
+}
+.navSearchTxt{
+    width: 80%;
+    height: 2rem;
+    padding: 1rem .5rem;
+}
+
+.navSearchBtn{
+    margin-top: 0.5rem;
+    width: 80%;
+}
+
+.navActive, .navActive:hover, .navActive:focus{
+    color: #f4511e;
+    background-color: #f9f9f9;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.jumbotron{
+    background-color: #f4511e;
+    padding: 2rem 1rem;
+    box-shadow: 0 0 2.5rem rgba(0, 0, 0, .5);
+}
+
+.colBtn button{
+    color: #fff;
+    background-color: #444;
+    width: 5rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: .25rem;
+    font-weight: 700;
+    margin: 0;
+}
+    
+.colBtn button:hover, .colBtn button:focus{
+    color: #333;
+    background-color: #f5f5f5;
+    text-decoration: none;
+}
