@@ -81,7 +81,7 @@
             background-color: #f9f9f9;
         }
 
-        #welcomeMsg{
+        #welcomeMsg {
             position: relative;
             bottom: 0;
             padding-left: 2.5rem;
@@ -198,12 +198,13 @@
 
         /* Main */
         .card {
-            position: relative;
-            height: 15rem;
-            width: auto;
+            position: absolute;
+            height: 22rem;
+            width: 18rem;
             margin: 1rem;
             padding: 0;
             overflow-y: auto;
+            color: #333;
         }
 
         .card::-webkit-scrollbar {
@@ -237,9 +238,9 @@
                     AEKI
                 </a>
             </li>
-                <span id="welcomeMsg">
-                    Welcome!
-                </span>
+            <span id="welcomeMsg">
+                Welcome!
+            </span>
 
         </ul>
 
@@ -268,11 +269,53 @@
     <div class="main_container d-flex flex-column" ondragover="drag_over(event)" ondrop="drop(event)">
 
         <main class="h-auto w-auto">
-            <div class="row" style="width: 100%; padding: 0; margin: 0">
-                <div class="col" style="color: #333;" id="card1" class="dragItm" draggable="true"
-                    ondragstart="drag_start(event)">
-                    <div class="card">
-                        <textarea>test test test test test test test test test test test test test test test test test test test
+            <div class="col" id="card2" class="dragItm" draggable="true"
+                ondragstart="drag_start(event)">
+                <div class="card">
+                    test test test test test test test test test test test test test test test test test test test
+                    test test test test test test test test test test test test test test test test test test test
+                    test test test
+                    test test test test test test test test test test test test test test test test test test test
+                    test test test test test test test test test test test test test test test test test test test
+                    test test test
+                    test test test test test test test test test test test test test test test test test test test
+                    test test test test test test test test test test test test test test test test test test test
+                    test test test
+                </div>
+            </div>
+            <div class="col" id="card3" class="dragItm" draggable="true"
+                ondragstart="drag_start(event)">
+                <div class="card">
+                    test test test test test test test test test test test test test test test test test test test
+                    test test test test test test test test test test test test test test test test test test test
+                    test test test
+                    test test test test test test test test test test test test test test test test test test test
+                    test test test test test test test test test test test test test test test test test test test
+                    test test test
+                    test test test test test test test test test test test test test test test test test test test
+                    test test test test test test test test test test test test test test test test test test test
+                    test test test
+                </div>
+            </div>
+            <div class="col" id="card4" class="dragItm" draggable="true"
+                ondragstart="drag_start(event)">
+                <div class="card">
+                    test test test test test test test test test test test test test test test test test test test
+                    test test test test test test test test test test test test test test test test test test test
+                    test test test
+                    test test test test test test test test test test test test test test test test test test test
+                    test test test test test test test test test test test test test test test test test test test
+                    test test test
+                    test test test test test test test test test test test test test test test test test test test
+                    test test test test test test test test test test test test test test test test test test test
+                    test test test
+                </div>
+            </div>
+
+
+            <div class="col" id="card1" class="dragItm" draggable="true" ondragstart="drag_start(event)" style="left: 100px; top: 100px;">
+                <div class="card">
+                    <textarea>test test test test test test test test test test test test test test test test test test test
                         test test test test test test test test test test test test test test test test test test test
                         test test test
                         test test test test test test test test test test test test test test test test test test test
@@ -282,49 +325,6 @@
                         test test test test test test test test test test test test test test test test test test test
                         test test test
                         </textarea>
-                    </div>
-                </div>
-                <div class="col" style="color: #333;" id="card2" class="dragItm" draggable="true"
-                    ondragstart="drag_start(event)">
-                    <div class="card">
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test
-                    </div>
-                </div>
-                <div class="col" style="color: #333;" id="card3" class="dragItm" draggable="true"
-                    ondragstart="drag_start(event)">
-                    <div class="card">
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test
-                    </div>
-                </div>
-                <div class="col" style="color: #333;" id="card4" class="dragItm" draggable="true"
-                    ondragstart="drag_start(event)">
-                    <div class="card">
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test
-                    </div>
                 </div>
             </div>
 
