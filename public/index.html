@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <title>Aeki Notes</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/8.2.1/firebase-app.js"></script>
@@ -64,7 +64,7 @@
             align-items: center;
             /*vertical-align: middle;*/
             border: none;
-            outline:none;
+            outline: none;
             border-width: 0;
 
             transition: background-color 0.25s ease-in-out;
@@ -79,6 +79,15 @@
         .nav-item:hover button {
             color: #f4511e;
             background-color: #f9f9f9;
+        }
+
+        #welcomeMsg{
+            position: relative;
+            bottom: 0;
+            padding-left: 2.5rem;
+            margin-top: auto;
+            margin-bottom: 10px;
+            font-weight: 700;
         }
 
         .login {
@@ -160,17 +169,19 @@
             z-index: 1;
         }
 
-        .dropdown-content a, .dropdown-content button {
+        .dropdown-content a,
+        .dropdown-content button {
             color: black;
             text-decoration: none;
             display: block;
             font-size: 15px;
             width: 100%;
             border: none;
-            outline:none;
+            outline: none;
         }
 
-        .dropdown-content a:hover, .dropdown-content button:hover {
+        .dropdown-content a:hover,
+        .dropdown-content button:hover {
             background-color: #ddd;
         }
 
@@ -219,21 +230,20 @@
     <header class=" mb-0 mt-0 mx-0 clearfix">
         <ul class="nav" style="float: left;">
 
-            <li class="nav-item" style="vertical-align: baseline;"><a href="index.html"
-                    class="font-weight-bold nav-link"
-                    style="font-size: 1.5rem; padding-left: 5rem; padding-right: 3.5rem; width: 10rem;"><img
-                        class="navImg" src='includes/logo-trans.png' />AEKI</a></li>
+            <li class="nav-item" style="vertical-align: baseline;">
+                <a href="index.html" class="font-weight-bold nav-link"
+                    style="font-size: 1.5rem; padding-left: 5rem; padding-right: 3.5rem; width: 10rem;">
+                    <img class="navImg" src='includes/logo-trans.png' />
+                    AEKI
+                </a>
+            </li>
+                <span id="welcomeMsg">
+                    Welcome!
+                </span>
 
         </ul>
 
         <div style="float: right;">
-            <!-- <?php
-          
-          if((isset($_COOKIE['user_id']))){
-
-              echo ' 
-            
-            check for login status, display if logged in -->
 
             <div id="options" class="dropdown nav-title">
                 <a class="dropbtn">
@@ -242,42 +252,12 @@
                 </a>
                 <div class="dropdown-content">
                     <button onclick="logout()">Logout</button>
-                    <button onclick="logout()">Logout</button>
                 </div>
             </div>
 
-            <!-- }else{
-                echo '
-                display if NOT logged in-->
+            <button id="loginBtn" onclick="googleLogin()" class="nav-title float-right nav-item"
+                style="display: none; border: none; outline:none;">Login</button>
 
-            <!-- 
-                <a href="" class="nav-title float-right nav-item login" data-toggle="modal"
-                    data-target="#modalLoginForm">
-                    Login
-                </a> -->
-
-            <button id="loginBtn" onclick="googleLogin()" class="nav-title float-right nav-item" style="display: none; border: none; outline:none;">Login</button>
-            <!-- }
-
-                if(isset($_GET['error'])){
-                echo ' 
-                Display if error-->
-
-            <!-- <div class="alert alert-danger text-left" role="alert"
-                    style="position: fixed; left: 2%; top: 2%; width: 96%;">
-                     echo ucfirst($_GET['error']);
-
-                    echo' 
-                    echo error
-
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div> -->
-
-
-            <!-- }
-                ?> -->
         </div>
 
     </header>

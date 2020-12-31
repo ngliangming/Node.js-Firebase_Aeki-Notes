@@ -43,6 +43,28 @@ function logout (){
     loadUser(); 
 }
 
+function loadUser(gUser) {
+    user = localStorage.getItem('user');
+
+    if (user){
+        console.log(`Prior data exists as user ${user}`);
+        document.getElementById('options').style.display = "block";
+        document.getElementById('loginBtn').style.display = "none";
+
+        document.getElementById('welcomeMsg').innerHTML = `Welcome ${localStorage.user}!`;
+        return true;
+    }
+    else{
+        console.log(`No prior data`);
+        document.getElementById('loginBtn').style.display = "block";
+        document.getElementById('options').style.display = "none";
+        
+                document.getElementById('welcomeMsg').innerHTML = "Welcome!";
+        return false;
+    }
+
+}
+
 //Drag and Drop function
 function drag_start(event) {
     var style = window.getComputedStyle(event.target, null);
@@ -62,22 +84,4 @@ function drop(event) {
 function drag_over(event) {
     event.preventDefault();
     return false;
-}
-
-function loadUser(gUser) {
-    user = localStorage.getItem('user');
-
-    if (user){
-        console.log(`Prior data exists as user ${user}`);
-        document.getElementById('options').style.display = "block";
-        document.getElementById('loginBtn').style.display = "none";
-        return true;
-    }
-    else{
-        console.log(`No prior data`);
-        document.getElementById('loginBtn').style.display = "block";
-        document.getElementById('options').style.display = "none";
-        return false;
-    }
-
 }
