@@ -1,9 +1,20 @@
+:root{
+    --cust-white: #fff;
+    --cust-offwhite: #f9f9f9;
+    --cust-grey: #333;
+    --cust-secondary: #f4511e;
+    --cust-note: #ecae27;
+}
+
 html,
 body{
-    background-color: #333;
-    color: #fff;
+    background-color: var(--cust-grey);
+    color: var(--cust-white);
+    height: 100%;
+    width: 100%;
     overflow:auto;
 }
+
 /* 
 body::-webkit-scrollbar {
     display: none;
@@ -60,9 +71,10 @@ body::-webkit-scrollbar {
 }
             
 .main_container{
-    margin-top: 3.5rem;
-    min-height: calc(100% - 5.5rem);
-    overflow:auto;
+    height: 100%;
+    /* margin-top: 3.5rem;
+    min-height: calc(100% - 5.5rem); */
+    overflow: auto;
 }
 
 main{
@@ -75,16 +87,16 @@ main{
 
 .btn-secondary, .btn-secondary:hover, .btn-secondary:focus{
     border-width: .15em;
-    color: #333;
-    background-color: #f9f9f9;
-    border-color: #f9f9f9;
+    color: var(--cust-grey);
+    background-color: var(--cust-offwhite);
+    border-color: var(--cust-offwhite);
 }
 
 .btn-light, .btn-light:hover, .btn-light:focus{
     border-width: .15em;
-    color: #fff;
-    background-color: #333;
-    border-color: #333;
+    color: var(--cust-white);
+    background-color: var(--cust-grey);
+    border-color: var(--cust-grey);
 }
 
 .alert{
@@ -93,12 +105,12 @@ main{
 
 .jumbotron{
     background-color: rgb(3,3,3,.7);
-    color: #fff;
+    color: var(--cust-white);
     border-radius: 0;
 }
 
 .table{
-    color: #fff;
+    color: var(--cust-white);
     width: 75%;
 }
 
@@ -129,7 +141,7 @@ thead{
     padding-top: 5.5rem;
     padding-bottom: 12rem;
     background-color: #353535;
-    color: #fff;
+    color: var(--cust-white);
     font-size: 1em;
     overflow-y: auto;
   
@@ -154,8 +166,8 @@ thead{
 }
 
 .navBtn{
-    color: #fff;
-    background-color: #f4511e;
+    color: var(--cust-white);
+    background-color: var(--cust-secondary);
     display: inline-block;
     width: 100%;
     height: 100%;
@@ -164,7 +176,7 @@ thead{
 }
 
 .navBtn:hover, .navBtn:focus{
-    color: #f4511e;
+    color: var(--cust-secondary);
     background-color: #f5f5f5;
     text-decoration: none;
     font-weight: 700;
@@ -185,20 +197,20 @@ thead{
 }
 
 .navActive, .navActive:hover, .navActive:focus{
-    color: #f4511e;
-    background-color: #f9f9f9;
+    color: var(--cust-secondary);
+    background-color: var(--cust-offwhite);
     text-decoration: none;
     font-weight: 700;
 }
 
 .jumbotron{
-    background-color: #f4511e;
+    background-color: var(--cust-secondary);
     padding: 2rem 1rem;
     box-shadow: 0 0 2.5rem rgba(0, 0, 0, .5);
 }
 
 .colBtn button{
-    color: #fff;
+    color: var(--cust-white);
     background-color: #444;
     width: 5rem;
     height: 2.5rem;
@@ -209,7 +221,7 @@ thead{
 }
     
 .colBtn button:hover, .colBtn button:focus{
-    color: #333;
+    color: var(--cust-grey);
     background-color: #f5f5f5;
     text-decoration: none;
 }

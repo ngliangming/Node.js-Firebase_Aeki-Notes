@@ -1,4 +1,4 @@
-<html>
+<html ondragover="drag_over(event)" ondrop="drop(event)">
 
 <head>
     <meta charset="utf-8">
@@ -36,8 +36,8 @@
         /* header */
         header {
             position: fixed;
-            background-color: #f4511e;
-            color: #fff;
+            background-color: var(--cust-secondary);
+            color: var(--cust-white);
             z-index: 1;
             height: 3.5rem;
             width: 100%;
@@ -56,7 +56,7 @@
         .nav-item,
         .nav-item a,
         .nav-item button {
-            color: #fff;
+            color: var(--cust-white);
             font-size: 1rem;
             position: relative;
             /*display: table-cell;*/
@@ -77,8 +77,8 @@
         .nav-item:hover,
         .nav-item:hover a,
         .nav-item:hover button {
-            color: #f4511e;
-            background-color: #f9f9f9;
+            color: var(--cust-secondary);
+            background-color: var(--cust-offwhite);
         }
 
         #welcomeMsg {
@@ -118,14 +118,14 @@
             width: 5rem;
             text-decoration: none;
             text-align: center;
-            background-color: #f4511e;
+            background-color: var(--cust-secondary);
             outline: none;
 
         }
 
         .nav-title:hover {
             text-decoration: none;
-            background-color: #f9f9f9;
+            background-color: var(--cust-offwhite);
         }
 
         .nav-title,
@@ -138,7 +138,7 @@
         }
 
         .dropbtn {
-            color: #fff;
+            color: var(--cust-white);
             padding: 5px;
             font-size: 16px;
             border: none;
@@ -147,7 +147,7 @@
 
         .dropdown:hover,
         .dropdown:hover .dropbtn {
-            color: #f4511e;
+            color: var(--cust-secondary);
         }
 
         .dropdown {
@@ -197,18 +197,83 @@
         }
 
         /* Main */
+
+        .col {
+            position: absolute;
+            height: 22rem;
+            width: 18rem;
+        }
+
         .card {
             position: absolute;
             height: 22rem;
             width: 18rem;
-            margin: 1rem;
-            padding: 0;
-            overflow-y: auto;
-            color: #333;
+            margin: 0;
+            padding: 0.5rem;
+            color: var(--cust-grey);
+            background-color: var(--cust-note);
+
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 0px;
         }
 
-        .card::-webkit-scrollbar {
-            display: none;
+        .top_bar {
+            border-bottom: 1px solid #555;
+            height: 1.5rem;
+            line-height: 1.5rem;
+            background-color: var(--cust-note);
+        }
+
+        .top_bar img {
+            float: right;
+
+        }
+
+        .card .content,
+        .card input {
+            height: 100%;
+            padding: .5rem 1rem;
+            padding-top: 0;
+            text-align: left;
+            resize: none;
+            overflow-y: auto;
+
+            border: none;
+            outline: none;
+            background-color: var(--cust-note);
+        }
+
+        .card .content {
+            margin-top: .5rem;
+            padding-top: 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #ce9720;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #555;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #333;
+        }
+
+        html ::-webkit-scrollbar-track {
+            background-color: var(--cust-grey);
+        }
+
+        html ::-webkit-scrollbar-thumb {
+            background: #fff;
+        }
+
+        html ::-webkit-scrollbar-thumb:hover {
+            background: #bdbdbd;
         }
 
         /* footer */
@@ -219,7 +284,7 @@
             bottom: 0;
             padding: .25rem 1rem;
             background-color: #222;
-            color: #fff;
+            color: var(--cust-white);
             font-size: 1em;
         }
     </style>
@@ -266,65 +331,42 @@
 
 
 
-    <div class="main_container d-flex flex-column" ondragover="drag_over(event)" ondrop="drop(event)">
+    <div class="main_container d-flex flex-column">
 
         <main class="h-auto w-auto">
-            <div class="col" id="card2" class="dragItm" draggable="true"
-                ondragstart="drag_start(event)">
+            <div class="col" id="card_1" class="dragItm" draggable="true" ondragstart="drag_start(event)"
+            style="left: 862px; top: 630px;">
                 <div class="card">
-                    test test test test test test test test test test test test test test test test test test test
-                    test test test test test test test test test test test test test test test test test test test
-                    test test test
-                    test test test test test test test test test test test test test test test test test test test
-                    test test test test test test test test test test test test test test test test test test test
-                    test test test
-                    test test test test test test test test test test test test test test test test test test test
-                    test test test test test test test test test test test test test test test test test test test
-                    test test test
-                </div>
-            </div>
-            <div class="col" id="card3" class="dragItm" draggable="true"
-                ondragstart="drag_start(event)">
-                <div class="card">
-                    test test test test test test test test test test test test test test test test test test test
-                    test test test test test test test test test test test test test test test test test test test
-                    test test test
-                    test test test test test test test test test test test test test test test test test test test
-                    test test test test test test test test test test test test test test test test test test test
-                    test test test
-                    test test test test test test test test test test test test test test test test test test test
-                    test test test test test test test test test test test test test test test test test test test
-                    test test test
-                </div>
-            </div>
-            <div class="col" id="card4" class="dragItm" draggable="true"
-                ondragstart="drag_start(event)">
-                <div class="card">
-                    test test test test test test test test test test test test test test test test test test test
-                    test test test test test test test test test test test test test test test test test test test
-                    test test test
-                    test test test test test test test test test test test test test test test test test test test
-                    test test test test test test test test test test test test test test test test test test test
-                    test test test
-                    test test test test test test test test test test test test test test test test test test test
-                    test test test test test test test test test test test test test test test test test test test
-                    test test test
+                    <div class="top_bar">
+                        <input id="title_1" type="text">
+                        <img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/512/close-icon.png"
+                            style="height: 1.25rem;">
+                    </div>
+                    <textarea id="content_1" class="content"></textarea>
                 </div>
             </div>
 
-
-            <div class="col" id="card1" class="dragItm" draggable="true" ondragstart="drag_start(event)" style="left: 100px; top: 100px;">
+            <div class="col" id="card_2" class="dragItm" draggable="true" ondragstart="drag_start(event)"
+                style="left: 100px; top: 100px;">
                 <div class="card">
-                    <textarea>test test test test test test test test test test test test test test test test test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test test test test test test test test test test test test test test test test test
-                        test test test
-                        </textarea>
+                    <div class="top_bar">
+                        <input id="title_2" type="text">
+                        <img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/512/close-icon.png"
+                            style="height: 1.25rem;">
+                    </div>
+                    <textarea id="content_2" class="content"></textarea>
+                </div>
+            </div>
+
+            <div class="col" id="card_3" class="dragItm" draggable="true" ondragstart="drag_start(event)"
+                style="left: 100px; top: 100px;">
+                <div class="card">
+                    <div class="top_bar">
+                        <input id="title_3" type="text">
+                        <img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/512/close-icon.png"
+                            style="height: 1.25rem;">
+                    </div>
+                    <textarea id="content_3" class="content"></textarea>
                 </div>
             </div>
 
