@@ -10,9 +10,9 @@ html,
 body{
     background-color: var(--cust-grey);
     color: var(--cust-white);
-    height: 100%;
+    height: calc(100% - 5rem);
     width: 100%;
-    overflow:auto;
+    overflow: auto;
 }
 
 /* 

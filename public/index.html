@@ -250,6 +250,7 @@
 
         ::-webkit-scrollbar {
             width: 10px;
+            height: 10px;
         }
 
         ::-webkit-scrollbar-track {
@@ -265,7 +266,7 @@
         }
 
         html ::-webkit-scrollbar-track {
-            background-color: var(--cust-grey);
+            background: var(--cust-grey);
         }
 
         html ::-webkit-scrollbar-thumb {
@@ -274,6 +275,10 @@
 
         html ::-webkit-scrollbar-thumb:hover {
             background: #bdbdbd;
+        }
+
+        html ::-webkit-scrollbar-corner {
+            background: var(--cust-grey);
         }
 
         /* footer */
@@ -335,7 +340,7 @@
 
         <main class="h-auto w-auto">
             <div class="col" id="card_1" class="dragItm" draggable="true" ondragstart="drag_start(event)"
-            style="left: 862px; top: 630px;">
+                style="left: 862px; top: 630px;">
                 <div class="card">
                     <div class="top_bar">
                         <input id="title_1" type="text">
@@ -372,9 +377,11 @@
 
         </main>
     </div>
+    <!--     
     <footer class="text-center mt-0 mx-0 mb-0">
-        © 2020, Aeki.com, Inc. or its affiliates
+    © 2020, Aeki.com, Inc. or its affiliates
     </footer>
+    -->
 </body>
 
 </html>
