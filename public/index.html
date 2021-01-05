@@ -32,6 +32,19 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="includes/logo-trans.png">
+
+    <script src="app.js"></script>
+    
+    <script type="text/javascript">
+        function delete_note(note){
+            parentNote = note.parentElement.parentElement.parentElement;
+            console.log(parentNote);
+            parentNote.style.opacity = "0";
+            setTimeout(clear => parentNote.parentNode.removeChild(parentNote) , 250);
+            
+        }
+    </script>
+
     <style>
         /* header */
         header {
@@ -55,7 +68,7 @@
 
         .nav-item,
         .nav-item a,
-        .nav-item button {
+        .nav-item button , #welcomeMsg{
             color: var(--cust-white);
             font-size: 1rem;
             position: relative;
@@ -83,11 +96,9 @@
 
         #welcomeMsg {
             position: relative;
-            bottom: 0;
             padding-left: 2.5rem;
-            margin-top: auto;
-            margin-bottom: 10px;
-            font-weight: 700;
+            font-weight: 1000;
+            align-items: center;
         }
 
         .login {
@@ -192,7 +203,7 @@
         }
 
         .dropdown-content {
-            transition: visibility 0.25s, opacity 0.25s ease-in-out, right 0.25s ease-in-out;
+            transition: right 0.25s ease-in-out;
             ;
         }
 
@@ -202,6 +213,7 @@
             position: absolute;
             height: 22rem;
             width: 18rem;
+            transition: opacity .25s ease-in-out;
         }
 
         .card {
@@ -218,6 +230,7 @@
         }
 
         .top_bar {
+            position: relative;
             border-bottom: 1px solid #555;
             height: 1.5rem;
             line-height: 1.5rem;
@@ -225,7 +238,10 @@
         }
 
         .top_bar img {
-            float: right;
+            position: absolute;
+            height: 1.25rem;
+            right: 0.125px;
+            top: 0.125px;
 
         }
 
@@ -296,7 +312,6 @@
 </head>
 
 <body>
-    <script src="app.js"></script>
 
     <header class=" mb-0 mt-0 mx-0 clearfix">
         <ul class="nav" style="float: left;">
@@ -319,7 +334,7 @@
             <div id="options" class="dropdown nav-title">
                 <a class="dropbtn">
 
-                    <i class="fa fa-align-justify dropbtnico" style="font-size:20px;margin-top:15px"></i>
+                    <i class="fa fa-align-justify" style="font-size:20px;margin-top:15px"></i>
                 </a>
                 <div class="dropdown-content">
                     <button onclick="logout()">Logout</button>
@@ -339,37 +354,34 @@
     <div class="main_container d-flex flex-column">
 
         <main class="h-auto w-auto">
-            <div class="col" id="card_1" class="dragItm" draggable="true" ondragstart="drag_start(event)"
+            <div class="col" id="card_1" draggable="true" ondragstart="drag_start(event)"
                 style="left: 862px; top: 630px;">
                 <div class="card">
                     <div class="top_bar">
                         <input id="title_1" type="text">
-                        <img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/512/close-icon.png"
-                            style="height: 1.25rem;">
+                        <img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/512/close-icon.png" onclick="setTimeout(delete_note(this), 3000);">
                     </div>
                     <textarea id="content_1" class="content"></textarea>
                 </div>
             </div>
 
-            <div class="col" id="card_2" class="dragItm" draggable="true" ondragstart="drag_start(event)"
+            <div class="col" id="card_2" draggable="true" ondragstart="drag_start(event)"
                 style="left: 100px; top: 100px;">
                 <div class="card">
                     <div class="top_bar">
                         <input id="title_2" type="text">
-                        <img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/512/close-icon.png"
-                            style="height: 1.25rem;">
+                        <img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/512/close-icon.png" onclick=delete_note(this)>
                     </div>
                     <textarea id="content_2" class="content"></textarea>
                 </div>
             </div>
 
-            <div class="col" id="card_3" class="dragItm" draggable="true" ondragstart="drag_start(event)"
+            <div class="col" id="card_3" draggable="true" ondragstart="drag_start(event)"
                 style="left: 100px; top: 100px;">
                 <div class="card">
                     <div class="top_bar">
                         <input id="title_3" type="text">
-                        <img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/512/close-icon.png"
-                            style="height: 1.25rem;">
+                        <img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/512/close-icon.png" onclick=delete_note(this)>
                     </div>
                     <textarea id="content_3" class="content"></textarea>
                 </div>

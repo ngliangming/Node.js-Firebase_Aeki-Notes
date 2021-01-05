@@ -85,3 +85,8 @@ function drag_over(event) {
     event.preventDefault();
     return false;
 }
+
+//Notes Function
+function add_note(){
+    
+}
