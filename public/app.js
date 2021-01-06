@@ -12,13 +12,17 @@ document.addEventListener("DOMContentLoaded", event => {
             const data = doc.data();
         })
 
-    if(loadUser(user)){
+    if (loadUser(user)) {
         console.log('logged in');
-    }else{
+    } else {
         console.log('not logged in');
     }
-});
 
+    for (let i = 0; i < 10; i++) {
+        add_note(i, i * 50 + 50, i * 50 + 100);
+    }
+
+});
 
 function googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -30,7 +34,7 @@ function googleLogin() {
             const name = user.displayName;
             // document.write(`Hello ${user.displayName}`);
             console.log(user.email)
-            
+
             localStorage.setItem('user', user.email);
             loadUser(user);
         })
@@ -38,15 +42,15 @@ function googleLogin() {
 
 }
 
-function logout (){
+function logout() {
     localStorage.removeItem('user');
-    loadUser(); 
+    loadUser();
 }
 
 function loadUser(gUser) {
     user = localStorage.getItem('user');
 
-    if (user){
+    if (user) {
         console.log(`Prior data exists as user ${user}`);
         document.getElementById('options').style.display = "block";
         document.getElementById('loginBtn').style.display = "none";
@@ -54,12 +58,12 @@ function loadUser(gUser) {
         document.getElementById('welcomeMsg').innerHTML = `Welcome ${localStorage.user}!`;
         return true;
     }
-    else{
+    else {
         console.log(`No prior data`);
         document.getElementById('loginBtn').style.display = "block";
         document.getElementById('options').style.display = "none";
-        
-                document.getElementById('welcomeMsg').innerHTML = "Welcome!";
+
+        document.getElementById('welcomeMsg').innerHTML = "Welcome!";
         return false;
     }
 
@@ -84,9 +88,4 @@ function drop(event) {
 function drag_over(event) {
     event.preventDefault();
     return false;
-}
-
-//Notes Function
-function add_note(){
-    
 }
