@@ -4,16 +4,25 @@ document.addEventListener("DOMContentLoaded", event => {
     console.log(app)
 
     const db = firebase.firestore();
+    var user;
 
-    const user = db.collection('users').doc('ngliangming@gmail.com');
-
-    user.get()
-        .then(doc => {
-            const data = doc.data();
-        })
-
-    if (loadUser(user)) {
+    if (loadUser()) {
         console.log('logged in');
+
+        user = db.collection('users').doc(localStorage.getItem('user'));
+
+        user.onSnapshot(doc => {
+            //Executes everytime doc changes from firebase
+
+            const data = doc.data();
+            console.log(data);
+        });
+
+
+        user = null;
+
+        // subscribe(user);
+
     } else {
         console.log('not logged in');
     }
@@ -22,7 +31,28 @@ document.addEventListener("DOMContentLoaded", event => {
         add_note(i, i * 50 + 50, i * 50 + 100);
     }
 
+    // setTimeout(() => {
+    //     unsubscribe(user);
+    //     console.log('unsub');
+    // }, 5000);
 });
+
+function subscribe(user) {
+    user.onSnapshot(doc => {
+        //Executes everytime doc changes from firebase
+
+        const data = doc.data();
+        console.log(data);
+    });
+}
+
+function unsubscribe(user) {
+    user.onSnapshot(doc => {
+
+        const data = doc.data();
+        console.log('AAA');
+    });
+}
 
 function googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -36,7 +66,10 @@ function googleLogin() {
             console.log(user.email)
 
             localStorage.setItem('user', user.email);
-            loadUser(user);
+            localStorage.setItem('credential', result.credential);
+            // The signed-in user info.
+
+            loadUser(localStorage.getItem('user') + localStorage.getItem('credential'));
         })
         .catch(console.log)
 
@@ -47,7 +80,7 @@ function logout() {
     loadUser();
 }
 
-function loadUser(gUser) {
+function loadUser() {
     user = localStorage.getItem('user');
 
     if (user) {
