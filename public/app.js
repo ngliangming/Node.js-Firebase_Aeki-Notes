@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", event => {
 
 
         // user.onSnapshot();
-    
+
         // subscribe(user);
 
     } else {
@@ -95,8 +95,21 @@ function drag_start(event) {
 function drop(event) {
     var offset = event.dataTransfer.getData("Text").split(',');
     var dm = document.getElementById(offset[2]);
-    dm.style.left = (event.clientX + parseInt(offset[0], 10)) + 'px';
-    dm.style.top = (event.clientY + parseInt(offset[1], 10)) + 'px';
+
+    
+    if (event.clientX + parseInt(offset[0], 10) <= 0) {
+        dm.style.left = 0 + 'px';
+    } else {
+        dm.style.left = (event.clientX + parseInt(offset[0], 10)) + 'px';
+        
+    }
+
+    if (event.clientY + parseInt(offset[1], 10) <= 50) {
+        dm.style.top = 50 + 'px';
+    } else {
+        dm.style.top = (event.clientY + parseInt(offset[1], 10)) + 'px';
+    }
+
     event.preventDefault();
     return false;
 }
@@ -149,7 +162,7 @@ function add_note(id, x, y) {
 
     //create textarea > card
     var textarea = document.createElement("textarea");
-    textarea.id = `content__${id}`;
+    textarea.id = `content_${id}`;
     textarea.classList.add("content");
 
     card.appendChild(textarea);
