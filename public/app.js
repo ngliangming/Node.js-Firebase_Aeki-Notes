@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", event => {
     }
 
     for (let i = 0; i < 10; i++) {
-        add_note(i, i * 50 + 50, i * 50 + 100);
+        // add_note(i, "a", "", i * 50 + 50, i * 50 + 100);
     }
 
     // setTimeout(() => {
@@ -36,15 +36,13 @@ function googleLogin() {
 
         .then(result => {
             const user = result.user;
-            const name = user.displayName;
             // document.write(`Hello ${user.displayName}`);
-            console.log(user.email)
+            //console.log(user.email)
+            
+            localStorage.setItem('user', user.displayName);
+            localStorage.setItem('email', user.email);
 
-            localStorage.setItem('user', user.email);
-            localStorage.setItem('credential', result.credential);
-            // The signed-in user info.
-
-            loadUser(localStorage.getItem('user') + localStorage.getItem('credential'));
+            loadUser();
         })
         .catch(console.log)
 
@@ -54,8 +52,18 @@ function logout() {
     toggleSub();
 
     localStorage.removeItem('user');
+    localStorage.removeItem('email');
     loadUser();
 }
+
+Object.size = function (obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
 
 function loadUser() {
     user = localStorage.getItem('user');
@@ -65,15 +73,35 @@ function loadUser() {
         document.getElementById('options').style.display = "block";
         document.getElementById('loginBtn').style.display = "none";
 
-        // document.getElementById('welcomeMsg').innerHTML = `Welcome ${localStorage.user}!`;
+        document.getElementById('welcomeMsg').innerHTML = `Welcome ${localStorage.getItem('user')}!`;
 
-        window.user_cont = window.db.collection('users').doc(localStorage.getItem('user'));
-        window.toggleSub = user_cont.onSnapshot(doc => {
-            //Executes everytime doc changes from firebase (constantly runs these code when doc change / basically realtime changes) 
+        window.user_cont = window.db.collection('users').doc(localStorage.getItem('email')).collection('notes');
 
-            const data = doc.data();
-            console.log(data);
-            document.getElementById('welcomeMsg').innerHTML = data['name'];
+        window.toggleSub = window.user_cont.onSnapshot(col => {
+            //Executes everytime doc changes from firebase (constantly runs these code when doc change / basically realtime changes)
+
+            //Close existing notes;
+            closeAll();
+
+            setTimeout(() => {
+                window.user_cont.get().then(snap => {
+                    size = snap.size // will return the collection size
+
+                    for (let i = 0; i < size; i++) {
+                        const data = snap.docs[i].data();
+                        console.log(data);
+                        add_note(snap.docs[i].id, data['title'], data['content'], data['x'], data['y']);
+
+                    }
+
+                });
+
+            }, 500);
+
+
+            // const data = doc.data();
+            // console.log(Object.size(data));
+            document.getElementById('welcomeMsg').innerHTML = `Welcome ${localStorage.getItem('user')}!`;
         });
 
         return true;
@@ -83,7 +111,9 @@ function loadUser() {
         document.getElementById('loginBtn').style.display = "block";
         document.getElementById('options').style.display = "none";
 
-        // document.getElementById('welcomeMsg').innerHTML = "Welcome!";
+        closeAll();
+        
+        document.getElementById('welcomeMsg').innerHTML = "Welcome!";
         return false;
     }
 
@@ -124,7 +154,7 @@ function drag_over(event) {
 }
 
 //Note/Card function
-function add_note(id, x, y) {
+function add_note(id, title, content, x, y) {
     //get main element, id = "board"
     var board = document.getElementById("board");
 
@@ -152,6 +182,7 @@ function add_note(id, x, y) {
     var input = document.createElement("input")
     input.id = `title_${id}`;
     input.type = "text";
+    input.value = title;
 
     top_bar.appendChild(input);
 
@@ -168,6 +199,7 @@ function add_note(id, x, y) {
     var textarea = document.createElement("textarea");
     textarea.id = `content_${id}`;
     textarea.classList.add("content");
+    textarea.innerHTML = content;
 
     card.appendChild(textarea);
 
