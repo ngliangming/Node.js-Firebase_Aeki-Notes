@@ -139,7 +139,7 @@ function add_note(id, x, y) {
     card.appendChild(textarea);
 
     //log new card to console
-    console.log(col);
+    // console.log(col);
 
     //append new card to "board"
     board.appendChild(col);
@@ -161,9 +161,12 @@ function add_note(id, x, y) {
 
 function close_note(note) {
     parentNote = note.parentElement.parentElement.parentElement;
-    console.log(parentNote);
+    // console.log(parentNote); 
     parentNote.style.opacity = "0";
-    setTimeout(clear => parentNote.parentNode.removeChild(parentNote), 250);
+    setTimeout(clear => {
+        console.log(parentNote);
+        parentNote.parentNode.removeChild(parentNote)
+    }, 250);
 
 }
 
@@ -171,15 +174,23 @@ function closeAll() {
     var cards = document.getElementsByClassName("col");
     console.log(cards);
     var i = 1;
+    var j = 1;
+    var parentNote = new Array;
+
     for (let card of cards) {
+        parentNote[i] = cards[cards.length - i];
+        // console.log(card);
+        // close_note(card);
+
+        parentNote[i] = cards[cards.length - i];
+        parentNote[i].style.opacity = "0";
+        console.log(parentNote[i]);
+
         setTimeout(() => {
-            cards[0].parentNode.removeChild(cards[0]);
-        }, i);
-        i += 1;
+            parentNote[j].parentNode.removeChild(parentNote[j]);
+            j++;
+        }, 250);
+
+        i = i + 1;
     }
-    setTimeout(() => {
-        for (let i = 0; i < 10; i++) {
-            add_note(i, i * 50 + 50, i * 50 + 100);
-        }
-    }, 1000);
 }
