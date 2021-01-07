@@ -1,12 +1,16 @@
-var toggleSub = function(){};
+//Global vars
+var db;
+var user_cont;
 
+var toggleSub = function () { };
+
+//On load
 document.addEventListener("DOMContentLoaded", event => {
 
     const app = firebase.app();
     console.log(app)
 
-    const db = firebase.firestore();
-    var user;
+    window.db = firebase.firestore();
 
     if (loadUser()) {
         console.log('logged in');
@@ -24,6 +28,7 @@ document.addEventListener("DOMContentLoaded", event => {
     // }, 5000);
 });
 
+//Login functions
 function googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -62,11 +67,9 @@ function loadUser() {
 
         // document.getElementById('welcomeMsg').innerHTML = `Welcome ${localStorage.user}!`;
 
-
-        const db = firebase.firestore();
-        var user_cont = db.collection('users').doc(localStorage.getItem('user'));;
+        window.user_cont = window.db.collection('users').doc(localStorage.getItem('user'));
         window.toggleSub = user_cont.onSnapshot(doc => {
-            //Executes everytime doc changes from firebase
+            //Executes everytime doc changes from firebase (constantly runs these code when doc change / basically realtime changes) 
 
             const data = doc.data();
             console.log(data);
