@@ -30,29 +30,12 @@ document.addEventListener("DOMContentLoaded", event => {
     for (let i = 0; i < 10; i++) {
         add_note(i, i * 50 + 50, i * 50 + 100);
     }
-
+    //============================================================================================
     setTimeout(() => {
         unsubscribe();
         console.log('unsub');
     }, 5000);
 });
-
-function subscribe(user) {
-    user.onSnapshot(doc => {
-        //Executes everytime doc changes from firebase
-
-        const data = doc.data();
-        console.log(data);
-    });
-}
-
-function unsubscribe(user) {
-    user.onSnapshot(doc => {
-
-        const data = doc.data();
-        console.log('AAA');
-    });
-}
 
 function googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
