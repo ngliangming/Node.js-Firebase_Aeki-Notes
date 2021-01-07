@@ -1,3 +1,5 @@
+var toggleSub = function(){};
+
 document.addEventListener("DOMContentLoaded", event => {
 
     const app = firebase.app();
@@ -8,21 +10,6 @@ document.addEventListener("DOMContentLoaded", event => {
 
     if (loadUser()) {
         console.log('logged in');
-
-        user = db.collection('users').doc(localStorage.getItem('user'));
-
-        var unsubscribe = user.onSnapshot(doc => {
-            //Executes everytime doc changes from firebase
-
-            const data = doc.data();
-            console.log(data);
-        });
-
-
-        // user.onSnapshot();
-
-        // subscribe(user);
-
     } else {
         console.log('not logged in');
     }
@@ -30,11 +17,11 @@ document.addEventListener("DOMContentLoaded", event => {
     for (let i = 0; i < 10; i++) {
         add_note(i, i * 50 + 50, i * 50 + 100);
     }
-    //============================================================================================
-    setTimeout(() => {
-        unsubscribe();
-        console.log('unsub');
-    }, 5000);
+
+    // setTimeout(() => {
+    //     toggleSub();
+    //     console.log('unsub');
+    // }, 5000);
 });
 
 function googleLogin() {
@@ -59,6 +46,8 @@ function googleLogin() {
 }
 
 function logout() {
+    toggleSub();
+
     localStorage.removeItem('user');
     loadUser();
 }
@@ -71,7 +60,19 @@ function loadUser() {
         document.getElementById('options').style.display = "block";
         document.getElementById('loginBtn').style.display = "none";
 
-        document.getElementById('welcomeMsg').innerHTML = `Welcome ${localStorage.user}!`;
+        // document.getElementById('welcomeMsg').innerHTML = `Welcome ${localStorage.user}!`;
+
+
+        const db = firebase.firestore();
+        var user_cont = db.collection('users').doc(localStorage.getItem('user'));;
+        window.toggleSub = user_cont.onSnapshot(doc => {
+            //Executes everytime doc changes from firebase
+
+            const data = doc.data();
+            console.log(data);
+            document.getElementById('welcomeMsg').innerHTML = data['name'];
+        });
+
         return true;
     }
     else {
@@ -79,7 +80,7 @@ function loadUser() {
         document.getElementById('loginBtn').style.display = "block";
         document.getElementById('options').style.display = "none";
 
-        document.getElementById('welcomeMsg').innerHTML = "Welcome!";
+        // document.getElementById('welcomeMsg').innerHTML = "Welcome!";
         return false;
     }
 
@@ -96,12 +97,12 @@ function drop(event) {
     var offset = event.dataTransfer.getData("Text").split(',');
     var dm = document.getElementById(offset[2]);
 
-    
-    if (event.clientX + parseInt(offset[0], 10) <= 0) {
-        dm.style.left = 0 + 'px';
+
+    if (event.clientY + parseInt(offset[1], 10) <= 50) {
+        dm.style.top = 50 + 'px';
     } else {
         dm.style.left = (event.clientX + parseInt(offset[0], 10)) + 'px';
-        
+
     }
 
     if (event.clientY + parseInt(offset[1], 10) <= 50) {
