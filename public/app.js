@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", event => {
 
         user = db.collection('users').doc(localStorage.getItem('user'));
 
-        user.onSnapshot(doc => {
+        var unsubscribe = user.onSnapshot(doc => {
             //Executes everytime doc changes from firebase
 
             const data = doc.data();
@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", event => {
         });
 
 
-        user = null;
-
+        // user.onSnapshot();
+    
         // subscribe(user);
 
     } else {
@@ -31,10 +31,10 @@ document.addEventListener("DOMContentLoaded", event => {
         add_note(i, i * 50 + 50, i * 50 + 100);
     }
 
-    // setTimeout(() => {
-    //     unsubscribe(user);
-    //     console.log('unsub');
-    // }, 5000);
+    setTimeout(() => {
+        unsubscribe();
+        console.log('unsub');
+    }, 5000);
 });
 
 function subscribe(user) {
