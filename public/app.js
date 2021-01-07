@@ -89,3 +89,97 @@ function drag_over(event) {
     event.preventDefault();
     return false;
 }
+
+//Note/Card function
+function add_note(id, x, y) {
+    //get main element, id = "board"
+    var board = document.getElementById("board");
+
+    //create div col
+    var col = document.createElement("div");
+    col.classList.add("col");
+    col.id = `card_${id}`;
+    col.draggable = true;
+    col.addEventListener("dragstart", function () { drag_start(event) });
+    col.style = `opacity: 0; left: ${x}px; top: ${y}px;`;
+
+    //create div card > col
+    var card = document.createElement("div");
+    card.classList.add("card");
+
+    col.appendChild(card);
+
+    //create div top_bar > card
+    var top_bar = document.createElement("div")
+    top_bar.classList.add("top_bar");
+
+    card.appendChild(top_bar);
+
+    //create input > top_bar
+    var input = document.createElement("input")
+    input.id = `title_${id}`;
+    input.type = "text";
+
+    top_bar.appendChild(input);
+
+    //create img > top_bar
+    var img = document.createElement("img");
+    img.id = `close_${id}`;
+    img.classList.add("close_img");
+    img.src = "https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/512/close-icon.png";
+    img.addEventListener('click', function () { setTimeout(close_note(this), 3000); });
+
+    top_bar.appendChild(img);
+
+    //create textarea > card
+    var textarea = document.createElement("textarea");
+    textarea.id = `content__${id}`;
+    textarea.classList.add("content");
+
+    card.appendChild(textarea);
+
+    //log new card to console
+    console.log(col);
+
+    //append new card to "board"
+    board.appendChild(col);
+
+    //show new card
+    setTimeout(clear => document.getElementById(`card_${id}`).style.opacity = "1", 100);
+
+    // <div class="col" id="card_1" draggable="true" ondragstart="drag_start(event)" style="left: 862px; top: 630px;">
+    //     <div class="card">
+    //         <div class="top_bar">
+    //             <input id="title_1" type="text">
+    //             <img src="https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/512/close-icon.png" onclick="setTimeout(delete_note(this), 3000);">
+    //         </div>
+    //         <textarea id="content_1" class="content"></textarea>
+    //     </div>
+    // </div>
+
+}
+
+function close_note(note) {
+    parentNote = note.parentElement.parentElement.parentElement;
+    console.log(parentNote);
+    parentNote.style.opacity = "0";
+    setTimeout(clear => parentNote.parentNode.removeChild(parentNote), 250);
+
+}
+
+function closeAll() {
+    var cards = document.getElementsByClassName("col");
+    console.log(cards);
+    var i = 1;
+    for (let card of cards) {
+        setTimeout(() => {
+            cards[0].parentNode.removeChild(cards[0]);
+        }, i);
+        i += 1;
+    }
+    setTimeout(() => {
+        for (let i = 0; i < 10; i++) {
+            add_note(i, i * 50 + 50, i * 50 + 100);
+        }
+    }, 1000);
+}
