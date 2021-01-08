@@ -202,17 +202,27 @@
 
         .col {
             position: absolute;
+            background-color: var(--cust-note);
             height: 22rem;
             width: 18rem;
             padding: 0;
             margin: 0;
             transition: opacity .25s ease-in-out;
+
+            /* allows resize of note by user*/
+            /* resize: both;
+            overflow: hidden;
+            min-height: 2.3rem;
+            min-width: 200px;
+            max-height: 1000px;
+            max-width: 800px; */
+            
         }
 
         .card {
             position: absolute;
-            height: 22rem;
-            width: 18rem;
+            height: 100%;
+            width: 100%;
             left: 0;
             margin: 0;
             padding: 0.5rem;
@@ -227,6 +237,7 @@
             position: relative;
             border-bottom: 1px solid #555;
             height: 1.5rem;
+            width: 100%;
             line-height: 1.5rem;
             background-color: var(--cust-note);
         }
@@ -253,9 +264,14 @@
             background-color: var(--cust-note);
         }
 
+        .card input {
+            width: calc(100% - 1.25rem);
+        }
+
         .card .content {
             margin-top: .5rem;
             padding-top: 0;
+            overflow-x: hidden;
         }
 
         ::-webkit-scrollbar {
@@ -339,7 +355,7 @@
                 style="border: none; outline:none;">Login</button> -->
             <!-- <button id="loginBtn" onclick="add_note(54,50,50)" class="nav-title float-right nav-item"
                 style="display: none; border: none; outline:none;">Login</button> -->
-                
+
             <button id="loginBtn" onclick="googleLogin()" class="nav-title float-right nav-item"
                 style="display: none; border: none; outline:none;">Login</button>
 
