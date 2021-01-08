@@ -38,7 +38,7 @@ function googleLogin() {
             const user = result.user;
             // document.write(`Hello ${user.displayName}`);
             //console.log(user.email)
-            
+
             localStorage.setItem('user', user.displayName);
             localStorage.setItem('email', user.email);
 
@@ -77,30 +77,59 @@ function loadUser() {
 
         window.user_cont = window.db.collection('users').doc(localStorage.getItem('email')).collection('notes');
 
+        var oldNote = new Array();
+
         window.toggleSub = window.user_cont.onSnapshot(col => {
             //Executes everytime doc changes from firebase (constantly runs these code when doc change / basically realtime changes)
 
-            //Close existing notes;
-            closeAll();
+            window.user_cont.get().then(snap => {
+                size = snap.size // will return the collection size
+                var newNote = new Array();
 
-            setTimeout(() => {
-                window.user_cont.get().then(snap => {
-                    size = snap.size // will return the collection size
+                //Checks if existing notes in browser is deleted from firestore
+                var missing = new Array();
+                for (let j = 0; j < oldNote.length; j++) {
+                    search: {
+                        for (let k = 0; k < size; k++) {
+                            const doc = snap.docs[k];
 
-                    for (let i = 0; i < size; i++) {
-                        const data = snap.docs[i].data();
-                        console.log(data);
+                            if (doc.id == oldNote[j]) {
+                                break search;
+                            }
+                        }
+                        missing.push(oldNote[j]);
+                    }
+                }
+
+                //Close notes that are missing from firestore
+                for (let j = 0; j < missing.length; j++) {
+                    console.log(`${missing[j]} has been deleted`);
+                    close_note(document.getElementById(`close_${missing[j]}`));
+                }
+
+                //Cycle through all notes from firestore
+                for (let i = 0; i < size; i++) {
+                    const data = snap.docs[i].data();
+
+                    //Check if note exists in browser
+                    if (document.getElementById(`card_${snap.docs[i].id}`) == null) {
+                        //Note does not exist in browser, add new note
                         add_note(snap.docs[i].id, data['title'], data['content'], data['x'], data['y']);
-
+                        console.log(`new note id ${snap.docs[i].id} added`);
+                    } else {
+                        //Note exists in browser, modify notes
+                        modify_note(snap.docs[i].id, data['title'], data['content'], data['x'], data['y']);
+                        console.log(`note id ${snap.docs[i].id} updated`);
                     }
 
-                });
+                    newNote[i] = snap.docs[i].id;
+                }
 
-            }, 500);
+                oldNote = Array.from(newNote);
+                console.log("=============== Update complete ===============")
+            });
 
 
-            // const data = doc.data();
-            // console.log(Object.size(data));
             document.getElementById('welcomeMsg').innerHTML = `Welcome ${localStorage.getItem('user')}!`;
         });
 
@@ -112,7 +141,7 @@ function loadUser() {
         document.getElementById('options').style.display = "none";
 
         closeAll();
-        
+
         document.getElementById('welcomeMsg').innerHTML = "Welcome!";
         return false;
     }
@@ -189,7 +218,7 @@ function add_note(id, title, content, x, y) {
     //create img > top_bar
     var img = document.createElement("img");
     img.id = `close_${id}`;
-    img.classList.add("close_img");
+    img.classList.add(`close_img_${id}`);
     img.src = "https://icons.iconarchive.com/icons/custom-icon-design/mono-general-1/512/close-icon.png";
     img.addEventListener('click', function () { setTimeout(close_note(this), 3000); });
 
@@ -229,7 +258,7 @@ function close_note(note) {
     // console.log(parentNote); 
     parentNote.style.opacity = "0";
     setTimeout(clear => {
-        console.log(parentNote);
+        // console.log(parentNote);
         parentNote.parentNode.removeChild(parentNote)
     }, 250);
 
@@ -258,4 +287,16 @@ function closeAll() {
 
         i = i + 1;
     }
+}
+
+function modify_note(id, title, content, x, y) {
+    //Get elements
+    var cCol = document.getElementById(`card_${id}`);
+    var cTitle = document.getElementById(`title_${id}`);
+    var cContent = document.getElementById(`content_${id}`);
+
+    //Modify value
+    cCol.style = `opacity: 1; left: ${x}px; top: ${y}px;`;
+    cTitle.value = title;
+    cContent.value = content;
 }
