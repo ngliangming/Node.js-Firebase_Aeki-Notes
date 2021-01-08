@@ -160,8 +160,8 @@ function drop(event) {
     var dm = document.getElementById(offset[2]);
 
 
-    if (event.clientY + parseInt(offset[1], 10) <= 50) {
-        dm.style.top = 50 + 'px';
+    if (event.clientX + parseInt(offset[1], 10) <= 50) {
+        dm.style.left = 0 + 'px';
     } else {
         dm.style.left = (event.clientX + parseInt(offset[0], 10)) + 'px';
 
