@@ -58,11 +58,11 @@
 
         .nav-item,
         .nav-item a,
-        .nav-item button,
-        #welcomeMsg {
+        .nav-item button {
             color: var(--cust-white);
             font-size: 1rem;
             position: relative;
+            height: 100%;
             /*display: table-cell;*/
             display: flex;
             align-items: center;
@@ -86,10 +86,7 @@
         }
 
         #welcomeMsg {
-            position: relative;
-            padding-left: 2.5rem;
-            font-weight: 1000;
-            align-items: center;
+            transition: opacity 0.25s ease-in-out;
         }
 
         .login {
@@ -216,7 +213,7 @@
             min-width: 200px;
             max-height: 1000px;
             max-width: 800px; */
-            
+
         }
 
         .card {
@@ -235,7 +232,7 @@
 
         .top_bar {
             position: relative;
-            border-bottom: 1px solid #555;
+            /* border-bottom: 1px solid #555; */
             height: 1.5rem;
             width: 100%;
             line-height: 1.5rem;
@@ -243,11 +240,12 @@
         }
 
         .top_bar img {
-            position: absolute;
             height: 1.25rem;
-            right: 0.125px;
-            top: 0.125px;
+        }
 
+        .card hr {
+            padding: 0;
+            margin: 5px;
         }
 
         .card .content,
@@ -307,6 +305,32 @@
             background: var(--cust-grey);
         }
 
+        .alert {
+            position: fixed;
+            text-align: center;
+            z-index: 1;
+            background-color: rgba(206, 255, 174, 0.808);
+            height: 50px;
+            margin: 1rem;
+            top: 50px;
+            left: 70px;
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.25s ease-in-out;
+        }
+
+        #createNote {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            height: 50px;
+            top: 50px;
+            background-color: #ffffffa9;
+            padding: 0.5rem;
+            margin: 1rem;
+            border-radius: 15%;
+        }
+
         /* footer */
         footer {
             height: 2rem;
@@ -329,14 +353,10 @@
             <li class="nav-item" style="vertical-align: baseline;">
                 <a href="index.html" class="font-weight-bold nav-link"
                     style="font-size: 1.5rem; padding-left: 5rem; padding-right: 50px; width: 10rem;">
-                    <img class="navImg" src='includes/logo-trans.png' />
+                    <img class="navImg" src='includes/logo-trans.png' draggable="false">
                     AEKI
                 </a>
             </li>
-            <span id="welcomeMsg">
-                Welcome!
-            </span>
-
         </ul>
 
         <div style="float: right;">
@@ -367,10 +387,26 @@
 
 
     <div class="main_container d-flex flex-column">
+        <img src="includes/add-documents.png" id="createNote" onclick="create_note()" draggable="false">
+        <div class="alert alert-success" id="alert" role="alert"></div>
 
-        <main id="board" class="h-auto w-auto">
-
-
+        <main id="board" class="h-100 w-100" style="position: relative;">
+            <div class="container d-flex flex-column h-100 w-100">
+                <div class="container h-auto w-auto mt-auto mb-auto" id="welcomeMsg" style="opacity: 0">
+                    <div class="inner cover text-center">
+                        <h1 class="cover-heading">Welcome to Aeki Notes.</h1>
+                        <p class="lead">This is a note making website, designed & developed by Ng Liang Ming.</p>
+                        <p class="lead">This website is free to use by all and is used to create simplified "Sticky
+                            Notes" similar to that found in Windows 10, with the exception that it is accessible through
+                            a browser. It is encouraged to use a device with a large screen as this was designed with desktops in mind.</p>
+                        <p class="lead">To begin using this webapp, start by logging in and the notes will automatically
+                            be pulled from the Firestore database hosted by Firebase.</p>
+                        <p class="lead">
+                            <a onClick="googleLogin()" class="btn btn-lg btn-secondary">Login with Google</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
     <!--     

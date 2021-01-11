@@ -3,6 +3,7 @@
     --cust-offwhite: #f9f9f9;
     --cust-grey: #333;
     --cust-secondary: #f4511e;
+    --cust-theme-button: #f42c1e;
     --cust-note: #ecae27;
 }
 
@@ -10,7 +11,8 @@ html,
 body{
     background-color: var(--cust-grey);
     color: var(--cust-white);
-    height: calc(100% - 5rem);
+    /* height: calc(100% - 5rem); */
+    height: 100%;
     width: 100%;
     overflow: auto;
 }
