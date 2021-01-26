@@ -165,7 +165,7 @@ function drop(event) {
     var x;
     var y;
 
-    if (event.clientX + parseInt(offset[1], 10) <= 50) {
+    if (event.clientX + parseInt(offset[0], 10) <= 0) {
         dm.style.left = 0 + 'px';
         x = 0
     } else {
