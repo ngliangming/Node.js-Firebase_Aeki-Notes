@@ -136,13 +136,17 @@ function toggleUi(loggedIn) {
         options.style.display = "block";
         loginBtn.style.display = "none";
         welcomeMsg.style.opacity = 0;
-        
+        setTimeout(() => {
+            welcomeMsg.style.display = "none"
+        }, 250);
+
         createBtn.style.display = "block";
-        
+
     } else {
         // console.log(`No prior data`);
         loginBtn.style.display = "block";
         options.style.display = "none";
+        welcomeMsg.style.display = "block"
         welcomeMsg.style.opacity = 1;
 
         createBtn.style.display = "none";
