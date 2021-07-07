@@ -37,6 +37,19 @@ function googleLogin() {
 
 }
 
+function pubBoard() {
+
+
+    try {
+        localStorage.setItem('user', 'public');
+        localStorage.setItem('email', 'public');
+        loadUser();
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 function logout() {
     toggleSub();
 
